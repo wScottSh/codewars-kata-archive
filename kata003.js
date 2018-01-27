@@ -7,6 +7,7 @@
 // [160, 3, 1719, 19, 11, 13, -21]
 // Should return: 160 (the only even number)
 
+// My answer
 function findOutlier(integers){
   let oddEven = [];
 
@@ -30,4 +31,31 @@ function findOutlier(integers){
   } else {
     return integers[oddEven.indexOf(0)]
   }
+}
+
+// Clever
+function findOutlier(int){
+  var even = int.filter(a=>a%2==0); // send values of all even numbers into even array
+  var odd = int.filter(a=>a%2!==0); // send values of all odd numbers into odd array
+  return even.length==1 ? even[0] : odd[0]; // if even array length is 1, return single even number, else do it to odd
+}
+
+// Best Practices
+const findOutlier = (integers) => {
+  // return is a ternary operator {return (conditional ? return if true : return if false)}
+  return integers.slice(0,3) // looks at first 3 elements in array (end arg not included)
+  .filter(even) // returns new array populated with all even numbers
+  .length >= 2 // checks to see that the array.length is greater than 1
+  ? integers.find(odd) // is so, return the first (and only) odd number in the original array
+  : integers.find(even); // else return the first (and only) even number in the original array
+}
+
+// returns true if the num is even
+const even = (num) => {
+  return (num % 2 == 0);
+}
+
+// returns true if num is odd
+const odd = (num) => {
+  return !even(num)
 }
