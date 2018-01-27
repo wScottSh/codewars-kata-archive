@@ -41,13 +41,14 @@ function findOutlier(int){
 }
 
 // Best Practices
+// example input [0,1,3,7,3,5349,43] expects output 0
 const findOutlier = (integers) => {
   // return is a ternary operator {return (conditional ? return if true : return if false)}
-  return integers.slice(0,3) // looks at first 3 elements in array (end arg not included)
-  .filter(even) // returns new array populated with all even numbers
-  .length >= 2 // checks to see that the array.length is greater than 1
-  ? integers.find(odd) // is so, return the first (and only) odd number in the original array
-  : integers.find(even); // else return the first (and only) even number in the original array
+  return integers.slice(0,3) // looks at first 3 elements in array (end arg not included) -> [0,1,3]
+  .filter(even) // returns new array populated with all even numbers -> [0]
+  .length >= 2 // checks to see that the even array.length is greater than 1 -> false
+  ? integers.find(odd) // is so, return the first (and only) odd number in the original array -> doesn't run
+  : integers.find(even); // else return the first (and only) even number in the original array -> 0
 }
 
 // returns true if the num is even
